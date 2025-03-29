@@ -14,7 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:devrel-ci
+
       - name: Echo
         run: |
-          echo "Hello World !"        
+          echo "Hello World !" && sleep 120s && echo "Tailscale checkup"        
 
