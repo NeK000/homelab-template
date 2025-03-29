@@ -24,12 +24,15 @@ jobs:
       - name: Create app directory 
         run: |
           ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "mkdir -p ${{ secrets.VPS_APP_PATH }}"        
-      
-      - name: list 
-        run: |
-          echo "$(ls -la)"
 
-      - name: Copy compose
+      - name: Copy
         run: |
-          scp compose.yml ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}         
+          scp compose.yml ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}    
+
+      - name: Deploy
+        run: |
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+            docker compose pull
+            docker compose up -d
+          "               
 
