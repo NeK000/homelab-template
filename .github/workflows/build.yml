@@ -29,6 +29,19 @@ jobs:
         run: |
           scp -r * ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}    
 
+      - name: Execute ansible build
+        run: |
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+          cd ${{ secrets.VPS_APP_PATH }}
+          ansible-playbook -b deploy.yml
+          "
+
+      - name: Execute ansible build
+        run: |
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+          rm -rf ${{ secrets.VPS_APP_PATH }}
+          "
+
       # - name: Deploy
       #   run: |
       #     ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
