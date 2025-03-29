@@ -1,0 +1,11 @@
+---
+
+host_timezone: "Europe/Copenhagen"
+appdata_path: /shares/storage/applications
+appdata_path_server: /shares/storage/applications/thor
+
+# ironicbadger.docker_compose_generator
+docker_compose_generator_uid: "1000"
+docker_compose_generator_gid: "1000"
+docker_compose_generator_output_path: "~/autodeploy"
+docker_compose_hostname: localhost

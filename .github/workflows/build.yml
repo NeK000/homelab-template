@@ -27,13 +27,13 @@ jobs:
 
       - name: Copy
         run: |
-          scp compose.yml ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}    
+          scp -r * ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}    
 
-      - name: Deploy
-        run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
-            cd ${{ secrets.VPS_APP_PATH }}
-            docker compose pull
-            docker compose up -d
-          "               
+      # - name: Deploy
+      #   run: |
+      #     ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+      #       cd ${{ secrets.VPS_APP_PATH }}
+      #       docker compose pull
+      #       docker compose up -d
+      #     "               
 
