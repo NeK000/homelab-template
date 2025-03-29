@@ -24,6 +24,10 @@ jobs:
       - name: Create app directory 
         run: |
           ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "mkdir -p ${{ secrets.VPS_APP_PATH }}"        
+      
+      - name: list 
+        run: |
+          echo "$(ls -la)"
 
       - name: Copy compose
         run: |
