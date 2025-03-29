@@ -16,5 +16,5 @@ jobs:
       
       - name: Echo
         run: |
-          Hello World !        
+          echo "Hello World !"        
 
