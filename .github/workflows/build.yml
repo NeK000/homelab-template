@@ -24,6 +24,6 @@ jobs:
       - name: Echo on tailnode
         run: |
           ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
-            echo "$(docker images -aq)
+            echo "$(docker images -aq)"
           "                  
 
