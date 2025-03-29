@@ -21,9 +21,11 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:devrel-ci
 
-      - name: Echo on tailnode
+      - name: Create app directory 
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
-            echo "$(docker images -aq)"
-          "                  
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "mkdir -p ${{ secrets.VPS_APP_PATH }}"        
+
+      - name: Copy compose
+        run: |
+          scp compose.yml ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}         
 
