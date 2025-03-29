@@ -32,6 +32,7 @@ jobs:
       - name: Deploy
         run: |
           ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+            cd ${{ secrets.VPS_APP_PATH }}
             docker compose pull
             docker compose up -d
           "               
