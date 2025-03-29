@@ -1,0 +1,20 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+        packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Echo
+        run: |
+          Hello World !        
+
