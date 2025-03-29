@@ -21,7 +21,9 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:devrel-ci
 
-      - name: Echo
+      - name: Echo on tailnode
         run: |
-          echo "Hello World !" && sleep 120s && echo "Tailscale checkup"        
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+            echo "Hello world !"
+          "                  
 
