@@ -4,5 +4,7 @@
     - 'group_vars/vault.yml'
     - 'group_vars/localhost.yml'
     become: yes
+    vars:
+      ansible_become_password: "{{ password }}"
     roles:    
       - role: ansible-role-docker-compose-generator

@@ -27,6 +27,6 @@ add-submodule URL *NAME:
 
 # just vault (encrypt/decrypt/edit)
 vault ACTION:
-    EDITOR='code --wait' ansible-vault {{ACTION}} group_vars/vault.yaml
+    EDITOR='code --wait' ansible-vault {{ACTION}} group_vars/vault.yml
 deploy:
     ansible-playbook -b deploy.yml
