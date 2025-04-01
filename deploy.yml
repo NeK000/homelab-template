@@ -7,4 +7,4 @@
     vars:
       ansible_become_password: "{{ password }}"
     roles:    
-      - role: ansible-role-docker-compose-generator
+      - role: IronicBadger.docker_compose_generator
