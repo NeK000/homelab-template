@@ -26,6 +26,9 @@ add-submodule URL *NAME:
     fi
 
 # just vault (encrypt/decrypt/edit)
+reqs *FORCE:
+	ansible-galaxy install -r requirements.yml {{FORCE}}
+
 vault ACTION:
     EDITOR='code --wait' ansible-vault {{ACTION}} group_vars/vault.yml
 deploy:

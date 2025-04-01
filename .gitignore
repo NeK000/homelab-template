@@ -1,0 +1,6 @@
+secrets
+*secret*
+**/.env
+**/.env*
+**/.vault-password
+galaxy_roles**
