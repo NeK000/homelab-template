@@ -27,31 +27,31 @@ jobs:
 
       - name: Copy
         run: |
-          scp -r * ${{ secrets.VPS_USER }}@thor:${{ secrets.VPS_APP_PATH }}    
+          scp -r * ${{ secrets.VPS_USER }}@{{ secrets.VPS_HOST }}:${{ secrets.VPS_APP_PATH }}    
 
       - name: Ansible Galaxy update
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@{{ secrets.VPS_HOST }} "
           cd ${{ secrets.VPS_APP_PATH }}
           ansible-galaxy install -r requirements.yml
           "    
 
       - name: Execute ansible build
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@{{ secrets.VPS_HOST }} "
           cd ${{ secrets.VPS_APP_PATH }}
-          ansible-playbook -b deploy.yml -e "docker_compose_generator_output_path=${{ secrets.VPS_APP_PATH }}"
+          ansible-playbook -b deploy.yml -e '{"docker_compose_generator_output_path": "${{ secrets.VPS_APP_PATH }}", "appdata_path_server": "${{ secrets.VPS_APPDATA_PATH }}", } '
           "
 
       - name: Deploy
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@{{ secrets.VPS_HOST }} "
             cd ${{ secrets.VPS_APP_PATH }}
             docker compose -f ${{ secrets.VPS_APP_PATH }}/compose.yaml pull
             docker compose -f ${{ secrets.VPS_APP_PATH }}/compose.yaml up -d 
           "               
       - name: Execute ansible build
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@{{ secrets.VPS_HOST }} "
           rm -rf ${{ secrets.VPS_APP_PATH }}
           "
