@@ -21,6 +21,10 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:devrel-ci
 
+      - name: Update submodules
+        run: |
+          git submodule update --recursive --remote
+
       - name: Create app directory 
         run: |
           ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "mkdir -p ${{ secrets.VPS_APP_PATH }}"        
