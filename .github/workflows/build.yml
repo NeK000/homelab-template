@@ -47,8 +47,8 @@ jobs:
         run: |
           ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
             cd ${{ secrets.VPS_APP_PATH }}
-            docker compose pull -f ${{ secrets.VPS_APP_PATH }}/compose.yaml
-            docker compose up -d -f ${{ secrets.VPS_APP_PATH }}/compose.yaml
+            docker compose -f ${{ secrets.VPS_APP_PATH }}/compose.yaml pull
+            docker compose -f ${{ secrets.VPS_APP_PATH }}/compose.yaml up -d 
           "               
       - name: Execute ansible build
         run: |
