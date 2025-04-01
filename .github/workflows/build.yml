@@ -23,7 +23,7 @@ jobs:
 
       - name: Create app directory 
         run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "mkdir -p ${{ secrets.VPS_APP_PATH }}"        
+          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_APP_PATH }}"        
 
       - name: Copy
         run: |
