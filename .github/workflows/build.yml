@@ -36,11 +36,11 @@ jobs:
           ansible-playbook -b deploy.yml
           "
 
-      - name: Execute ansible build
-        run: |
-          ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
-          rm -rf ${{ secrets.VPS_APP_PATH }}
-          "
+      # - name: Execute ansible build
+      #   run: |
+      #     ssh -o "StrictHostKeyChecking no" ${{ secrets.VPS_USER }}@thor "
+      #     rm -rf ${{ secrets.VPS_APP_PATH }}
+      #     "
 
       # - name: Deploy
       #   run: |
